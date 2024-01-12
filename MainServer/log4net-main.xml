@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<log4net>
+  <!-- OFF, FATAL, ERROR, WARN, INFO, DEBUG, ALL -->
+  <!-- Set root logger level to ERROR and its appenders -->
+  <root>
+    <level value="All" />
+    <appender-ref ref="SysAppender" />
+    <appender-ref ref="ConsoleAppender" />
+  </root>
+  <!-- Print only messages of level DEBUG or above in the packages -->
+  <!--<logger name="CWGdshLogger">
+      <level value="DEBUG" />
+    </logger>-->
+
+  <!-- appender for rolling file -->
+  <appender name="SysAppender" type="log4net.Appender.RollingFileAppender,log4net">
+    <param name="File" value="D:/Logs/MainServer/" />
+	  <!--是否追加到文件:日志文件路径,文件夹不存在则新建 -->
+    <param name="AppendToFile" value="true" />
+	  <!--是否追加到文件-->
+    <param name="RollingStyle" value="Date" />
+    <lockingModel type="log4net.Appender.FileAppender+MinimalLock" />
+	  <!--记录日志写入文件时，不锁定文本文件，防止多线程时不能写Log,官方说线程非安全-->
+    <param name="MaxSizeRollBackups" value="30" />
+	  <!--最多产生的日志文件数，超过则只保留最新的n个。设定值value="－1"为不限文件数-->
+    <param name="DatePattern" value="&quot;Logs_&quot;yyyyMMdd&quot;.txt&quot;" />
+    <param name="StaticLogFileName" value="false" />
+	  <!--是否只写到一个文件中-->
+    <filter type="log4net.Filter.LevelRangeFilter">
+      <param name="LevelMin" value="Debug" />
+      <!--<param name="LevelMax" value="ERROR" />-->
+    </filter>
+    <layout type="log4net.Layout.PatternLayout,log4net">
+      <param name="ConversionPattern" value="[%date][%-5level][%logger] - %message%newline" />
+    </layout>
+  </appender>
+
+  <!-- appender for Console -->
+  <appender name="ConsoleAppender" type="log4net.Appender.ConsoleAppender,log4net">
+    <!--<mapping>
+        <level value="ERROR" />
+        <foreColor value="White" />
+        <backColor value="Red" />
+      </mapping>-->
+    <!--<filter type="log4net.Filter.LevelRangeFilter">
+        <param name="LevelMin" value="Debug" />
+        <param name="LevelMax" value="FATAL" />
+      </filter>-->
+    <layout type="log4net.Layout.PatternLayout,log4net">
+      <param name="ConversionPattern" value="%method - %message%newline" />
+    </layout>
+  </appender>
+</log4net>

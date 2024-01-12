@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configure>
+  <!--进程id-->
+  <procId>1</procId>
+  
+  <!--AGV服务地址-->
+	<AGVUrl>http://localhost:8094/gds4-ui/#/</AGVUrl>
+  
+  <!--IT地址-->
+	<WFSUrl>http://127.0.0.1:8084/gds4/api</WFSUrl>
+  
+  <!--Web Socket端口-->
+  <wsPort>9600</wsPort>
+ 
+
+  <!--外设(保留)-->
+  <peripheral_device>
+    <plc logic_station="1" />
+    <co_axis ip="192.168.2.10" port="7800”"/>
+  </peripheral_device>
+
+</configure>
